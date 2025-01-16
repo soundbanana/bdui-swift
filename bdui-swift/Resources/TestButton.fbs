@@ -1,0 +1,7 @@
+// TestButton.fbs
+namespace bdui;
+
+table TestButton {
+  text: string;
+  action: string;
+}

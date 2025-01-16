@@ -1,0 +1,14 @@
+// StackView.fbs
+include "TestButton.fbs";
+
+namespace bdui;
+
+enum Axis: byte {
+  Horizontal = 0,
+  Vertical = 1
+}
+
+table StackView {
+  axis: Axis;
+  children: [TestButton];  // Assuming StackView has a list of TestButtons
+}

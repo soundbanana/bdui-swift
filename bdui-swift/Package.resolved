@@ -1,5 +1,5 @@
 {
-  "originHash" : "a53c8fc2a699153f6390d5399b5b15bda034e229efa99771cc9099edc0df8bb2",
+  "originHash" : "ac0c2b8290d280fbad993f05f347bf195a3b0e7495a51662e687d7470bdd2323",
   "pins" : [
     {
       "identity" : "flatbuffers",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/google/flatbuffers.git",
       "state" : {
         "branch" : "master",
-        "revision" : "1f4a9038ce84e68fcba82ca427557c5ddde23eec"
+        "revision" : "c9125e6385df65869aba748a4cbad7d9df3333de"
       }
     }
   ],
