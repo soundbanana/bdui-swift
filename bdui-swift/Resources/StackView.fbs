@@ -1,5 +1,5 @@
 // StackView.fbs
-include "TestButton.fbs";
+include "Button.fbs";
 
 namespace bdui;
 
@@ -10,5 +10,5 @@ enum Axis: byte {
 
 table StackView {
   axis: Axis;
-  children: [TestButton];  // Assuming StackView has a list of TestButtons
+  children: [Button];  // Assuming StackView has a list of TestButtons
 }

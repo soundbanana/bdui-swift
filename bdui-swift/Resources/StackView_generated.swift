@@ -35,7 +35,7 @@ public struct bdui_StackView: FlatBufferObject, Verifiable {
   public var axis: bdui_Axis { let o = _accessor.offset(VTOFFSET.axis.v); return o == 0 ? .horizontal : bdui_Axis(rawValue: _accessor.readBuffer(of: Int8.self, at: o)) ?? .horizontal }
   public var hasChildren: Bool { let o = _accessor.offset(VTOFFSET.children.v); return o == 0 ? false : true }
   public var childrenCount: Int32 { let o = _accessor.offset(VTOFFSET.children.v); return o == 0 ? 0 : _accessor.vector(count: o) }
-  public func children(at index: Int32) -> bdui_TestButton? { let o = _accessor.offset(VTOFFSET.children.v); return o == 0 ? nil : bdui_TestButton(_accessor.bb, o: _accessor.indirect(_accessor.vector(at: o) + index * 4)) }
+  public func children(at index: Int32) -> bdui_Button? { let o = _accessor.offset(VTOFFSET.children.v); return o == 0 ? nil : bdui_Button(_accessor.bb, o: _accessor.indirect(_accessor.vector(at: o) + index * 4)) }
   public static func startStackView(_ fbb: inout FlatBufferBuilder) -> UOffset { fbb.startTable(with: 2) }
   public static func add(axis: bdui_Axis, _ fbb: inout FlatBufferBuilder) { fbb.add(element: axis.rawValue, def: 0, at: VTOFFSET.axis.p) }
   public static func addVectorOf(children: Offset, _ fbb: inout FlatBufferBuilder) { fbb.add(offset: children, at: VTOFFSET.children.p) }
@@ -54,7 +54,7 @@ public struct bdui_StackView: FlatBufferObject, Verifiable {
   public static func verify<T>(_ verifier: inout Verifier, at position: Int, of type: T.Type) throws where T: Verifiable {
     var _v = try verifier.visitTable(at: position)
     try _v.visit(field: VTOFFSET.axis.p, fieldName: "axis", required: false, type: bdui_Axis.self)
-    try _v.visit(field: VTOFFSET.children.p, fieldName: "children", required: false, type: ForwardOffset<Vector<ForwardOffset<bdui_TestButton>, bdui_TestButton>>.self)
+    try _v.visit(field: VTOFFSET.children.p, fieldName: "children", required: false, type: ForwardOffset<Vector<ForwardOffset<bdui_Button>, bdui_Button>>.self)
     _v.finish()
   }
 }

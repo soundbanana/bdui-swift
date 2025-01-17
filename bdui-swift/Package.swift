@@ -24,7 +24,8 @@ let package = Package(
         .target(
             name: "bdui-swift",
             dependencies: [
-                .product(name: "FlatBuffers", package: "flatbuffers")
+                .product(name: "FlatBuffers", package: "flatbuffers"),
+                "bdui-swift-resources"
             ],
             path: "Sources/bdui-swift"
         ),
@@ -33,7 +34,11 @@ let package = Package(
             dependencies: [
                 .product(name: "FlatBuffers", package: "flatbuffers")
             ],
-            path: "Resources/"
+            path: "Resources/",
+            resources: [
+                .process("Button.fbs"),
+                .process("StackView.fbs")
+            ]
         ),
         .testTarget(
             name: "bdui-swift-tests",
