@@ -18,7 +18,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/google/flatbuffers.git", branch: "master")
+        .package(url: "https://github.com/google/flatbuffers.git", exact: .init(stringLiteral: "24.12.23"))
     ],
     targets: [
         .target(
