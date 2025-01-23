@@ -1,0 +1,24 @@
+namespace bdui;
+
+table Button {
+    text: string (id: 0);  // Обязательное поле
+    action: string (id: 1);  // Обязательное поле
+
+    // Дополнительные параметры UIButton, которые могут быть опциональными
+    title_color: Color (id: 2);  // Опционально
+    background_color: Color (id: 3);  // Опционально
+    image: string (id: 4);  // Опционально
+    image_edge_insets: [float] (id: 5);  // Опционально
+    content_edge_insets: [float] (id: 6);  // Опционально
+    is_enabled: bool = true (id: 7);  // Опционально с значением по умолчанию
+    is_selected: bool = false (id: 8);  // Опционально с значением по умолчанию
+    is_highlighted: bool = false (id: 9);  // Опционально с значением по умолчанию
+}
+
+// Определяем тип Color
+table Color {
+    r: float;  // Красный компонент
+    g: float;  // Зеленый компонент
+    b: float;  // Синий компонент
+    a: float;  // Альфа компонент (прозрачность)
+}

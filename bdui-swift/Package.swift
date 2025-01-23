@@ -5,12 +5,16 @@ let package = Package(
     name: "bdui-swift",
     platforms: [
         .macOS(.v10_14),
-        .iOS(.v15),
+        .iOS(.v13),
     ],
     products: [
         .library(
             name: "bdui-swift",
             targets: ["bdui-swift"]
+        ),
+        .library(
+            name: "bdui-swift-tests",
+            targets: ["bdui-swift-tests"]
         ),
     ],
     dependencies: [
@@ -20,8 +24,29 @@ let package = Package(
         .target(
             name: "bdui-swift",
             dependencies: [
+                .product(name: "FlatBuffers", package: "flatbuffers"),
+                "bdui-swift-resources"
+            ],
+            path: "Sources/bdui-swift"
+        ),
+        .target(
+            name: "bdui-swift-resources",
+            dependencies: [
                 .product(name: "FlatBuffers", package: "flatbuffers")
+            ],
+            path: "Resources/",
+            resources: [
+                .process("Button.fbs"),
+                .process("StackView.fbs")
             ]
         ),
+        .testTarget(
+            name: "bdui-swift-tests",
+            dependencies: [
+                "bdui-swift",
+                "bdui-swift-resources"
+            ],
+            path: "Tests/bdui-swift-tests"
+        )
     ]
 )
