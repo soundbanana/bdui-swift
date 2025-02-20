@@ -9,17 +9,17 @@ public typealias StackView = bdui_StackView
 public typealias Axis = bdui_Axis
 
 // Protocols for FlatBuffer Encoding/Decoding
-protocol FlatBufferEncodable {
+public protocol FlatBufferEncodable {
     static func encodeToFlatBuffer(properties: [String: Any], builder: inout FlatBufferBuilder) -> Offset
 }
 
-protocol FlatBufferDecodable {
+public protocol FlatBufferDecodable {
     static func decodeFromFlatBuffer(data: Data) -> Self?
 }
 
 // MARK: - Button Extension
 extension Button: FlatBufferEncodable {
-    static func encodeToFlatBuffer(properties: [String: Any], builder: inout FlatBufferBuilder) -> Offset {
+    public static func encodeToFlatBuffer(properties: [String: Any], builder: inout FlatBufferBuilder) -> Offset {
         let textOffset = builder.create(string: properties["text"] as? String ?? "")
         let actionOffset = builder.create(string: properties["action"] as? String ?? "")
 
@@ -54,7 +54,7 @@ extension Button: FlatBufferEncodable {
 }
 
 extension Button: FlatBufferDecodable {
-    static func decodeFromFlatBuffer(data: Data) -> Button? {
+    public static func decodeFromFlatBuffer(data: Data) -> Button? {
         var buffer = ByteBuffer(bytes: [UInt8](data))
         return try? getCheckedRoot(byteBuffer: &buffer)
     }
@@ -90,7 +90,7 @@ private extension Color {
 
 // MARK: - StackView Extension
 extension StackView: FlatBufferEncodable {
-    static func encodeToFlatBuffer(properties: [String: Any], builder: inout FlatBufferBuilder) -> Offset {
+    public static func encodeToFlatBuffer(properties: [String: Any], builder: inout FlatBufferBuilder) -> Offset {
         guard let axisRawValue = properties["axis"] as? Int8,
               let axis = Axis(rawValue: axisRawValue) else {
             fatalError("Failed to encode StackView: Missing or invalid 'axis' property.")
@@ -106,16 +106,18 @@ extension StackView: FlatBufferEncodable {
 }
 
 extension StackView: FlatBufferDecodable {
-    static func decodeFromFlatBuffer(data: Data) -> StackView? {
+    public static func decodeFromFlatBuffer(data: Data) -> StackView? {
         var buffer = ByteBuffer(bytes: [UInt8](data))
         return try? getCheckedRoot(byteBuffer: &buffer)
     }
 }
 
 // MARK: - FlatBuffersParser
-class FlatBuffersParser {
+public class FlatBuffersParser {
+    
+    public init() {}
 
-    func encode<T: FlatBufferEncodable>(schemaType: T.Type, properties: [String: Any]) -> Data {
+    public func encode<T: FlatBufferEncodable>(schemaType: T.Type, properties: [String: Any]) -> Data {
         print("Encoding \(T.self) with properties: \(properties)")
         var builder = FlatBufferBuilder(initialSize: 1024)
 
@@ -127,7 +129,7 @@ class FlatBuffersParser {
         return Data(byteArray)
     }
 
-    func parse<T: FlatBufferDecodable>(data: Data, schemaType: T.Type) -> T? {
+    public func parse<T: FlatBufferDecodable>(data: Data, schemaType: T.Type) -> T? {
         print("Decoding \(T.self) from data...")
         return T.decodeFromFlatBuffer(data: data)
     }
